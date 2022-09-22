@@ -1,0 +1,16 @@
+.startContainer {
+    text-align: center;
+}
+.title {
+    font-weight: 700;
+    font-size: 52px;
+    line-height: 38px;
+    color: #293264;
+    margin-bottom: 18px;
+}
+.description {
+    font-family: 'Inter';
+    font-weight: 400;
+    color: #293264;
+    margin-bottom: 30px;
+}

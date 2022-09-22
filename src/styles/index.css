@@ -1,0 +1,18 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Karla';
+    display: grid;
+    place-items: center;
+    background: black;
+    font-size: 16px;
+    line-height: 19px;
+}
