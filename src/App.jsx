@@ -10,19 +10,29 @@ const App = () => {
     const [gameOn, setGameOn] = useState(false);
     const [resetQuiz, setResetQuiz] = useState(0);
 
+    useEffect(() => {
+        setLoading(true);
+        fetch('https://opentdb.com/api.php?amount=5')
+            .then((response) => response.json())
+            .then((data) => {
+                updateData(data);
+                setLoading(false);
+            });
+    }, [resetQuiz]);
+
     const handleClick = () => {
         setGameOn(true);
     };
 
     // https://stackoverflow.com/a/7394787
-    const decodeHtml = (html) => {
+    const decodeHTML = (html) => {
         var txt = document.createElement('textarea');
         txt.innerHTML = html;
         return txt.value;
     };
 
     // https://stackoverflow.com/a/2450976
-    const shuffle = (array) => {
+    const shuffleArray = (array) => {
         let currentIndex = array.length,
             randomIndex;
 
@@ -38,8 +48,34 @@ const App = () => {
                 array[currentIndex],
             ];
         }
-
         return array;
+    };
+
+    const updateData = (data) => {
+        setQuizData(
+            data.results.map((qData) => {
+                const incorrect = qData.incorrect_answers.map((answer) => {
+                    return {
+                        value: decodeHTML(answer),
+                        id: nanoid(),
+                        isHeld: false,
+                        isCorrect: false,
+                    };
+                });
+                const correct = {
+                    value: decodeHTML(qData.correct_answer),
+                    id: nanoid(),
+                    isHeld: false,
+                    isCorrect: true,
+                };
+                const answersArray = shuffleArray([correct].concat(incorrect));
+                return {
+                    allAnswers: answersArray,
+                    id: nanoid(),
+                    question: decodeHTML(qData.question),
+                };
+            })
+        );
     };
 
     const heldChange = (qID, aID) => {
@@ -57,43 +93,6 @@ const App = () => {
             });
         });
     };
-
-    useEffect(() => {
-        setLoading(true);
-        fetch('https://opentdb.com/api.php?amount=5')
-            .then((response) => response.json())
-            .then((data) => {
-                setQuizData(
-                    data.results.map((qData) => {
-                        const incorrect = qData.incorrect_answers.map(
-                            (answer) => {
-                                return {
-                                    value: decodeHtml(answer),
-                                    id: nanoid(),
-                                    isHeld: false,
-                                    isCorrect: false,
-                                };
-                            }
-                        );
-                        const correct = {
-                            value: decodeHtml(qData.correct_answer),
-                            id: nanoid(),
-                            isHeld: false,
-                            isCorrect: true,
-                        };
-                        const answersArray = shuffle(
-                            [correct].concat(incorrect)
-                        );
-                        return {
-                            allAnswers: answersArray,
-                            id: nanoid(),
-                            question: decodeHtml(qData.question),
-                        };
-                    })
-                );
-                setLoading(false);
-            });
-    }, [resetQuiz]);
 
     const handleResetQuiz = () => {
         setResetQuiz((prevState) => prevState + 1);

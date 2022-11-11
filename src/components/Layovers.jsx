@@ -16,7 +16,7 @@ const Start = (props) => {
 
 const Loading = () => {
     return (
-        <div>
+        <>
             <Dna
                 visible={true}
                 height="80"
@@ -25,7 +25,7 @@ const Loading = () => {
                 wrapperStyle={{}}
                 wrapperClass="dna-wrapper"
             />
-        </div>
+        </>
     );
 };
 
