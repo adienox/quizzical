@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
+import '../styles/selection.css';
 
 const Selection = ({
     setQuizData,
@@ -106,17 +107,19 @@ const Selection = ({
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="selectionBox">
             <input
                 type="number"
                 name="noOfQuestions"
                 placeholder="Number of questions"
+                className="box"
                 value={data.noOfQuestions}
                 onChange={handleChange}
             />
             <select
                 name="category"
                 id="category"
+                className="box"
                 value={data.category}
                 onChange={handleChange}
             >
@@ -151,6 +154,7 @@ const Selection = ({
             <select
                 name="difficulty"
                 id="difficulty"
+                className="box"
                 value={data.difficulty}
                 onChange={handleChange}
             >
@@ -162,6 +166,7 @@ const Selection = ({
             <select
                 name="type"
                 id="type"
+                className="box"
                 value={data.type}
                 onChange={handleChange}
             >
@@ -169,7 +174,7 @@ const Selection = ({
                 <option value="multiple">Multiple Choice</option>
                 <option value="boolean">True / False</option>
             </select>
-            <button>Start</button>
+            <button className="defaultButton">Start</button>
         </form>
     );
 };

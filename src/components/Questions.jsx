@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 import Question from './Question';
 import '../styles/questions.css';
@@ -49,7 +49,7 @@ const Questions = (props) => {
                         You scored {score}/{props.noOfQuestions} correct answers
                     </h4>
                 )}
-                <button className="defaultButton questionsButton" onClick={handleClick}>
+                <button className="defaultButton" onClick={handleClick}>
                     {isShown ? 'Reset' : 'Check Answer'}
                 </button>
             </div>

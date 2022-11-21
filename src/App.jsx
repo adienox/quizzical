@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import { nanoid } from 'nanoid';
+import { useState } from 'react';
 import { Start, Loading } from './components/Layovers';
 import Questions from './components/Questions';
 import Selection from './components/Selection';

@@ -44,6 +44,7 @@ hr {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    margin-bottom: 32px;
 }
 .score {
     font-family: 'Inter';
@@ -51,8 +52,4 @@ hr {
     font-size: 16px;
     line-height: 15px;
     color: #293264;
-}
-
-.questionsButton {
-    margin-bottom: 32px;
 }
