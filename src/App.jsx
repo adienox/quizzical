@@ -1,81 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { Start, Loading } from './components/Layovers';
 import Questions from './components/Questions';
+import Selection from './components/Selection';
 import './styles/app.css';
 
 const App = () => {
     const [quizData, setQuizData] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [gameOn, setGameOn] = useState(false);
-    const [resetQuiz, setResetQuiz] = useState(0);
-
-    useEffect(() => {
-        setLoading(true);
-        fetch('https://opentdb.com/api.php?amount=5')
-            .then((response) => response.json())
-            .then((data) => {
-                updateData(data);
-                setLoading(false);
-            });
-    }, [resetQuiz]);
+    const [loading, setLoading] = useState(false);
+    const [selected, setSelected] = useState(false);
+    const [noOfQuestions, setNoOfQuestions] = useState(5);
 
     const handleClick = () => {
         setGameOn(true);
-    };
-
-    // https://stackoverflow.com/a/7394787
-    const decodeHTML = (html) => {
-        var txt = document.createElement('textarea');
-        txt.innerHTML = html;
-        return txt.value;
-    };
-
-    // https://stackoverflow.com/a/2450976
-    const shuffleArray = (array) => {
-        let currentIndex = array.length,
-            randomIndex;
-
-        // While there remain elements to shuffle.
-        while (currentIndex != 0) {
-            // Pick a remaining element.
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex--;
-
-            // And swap it with the current element.
-            [array[currentIndex], array[randomIndex]] = [
-                array[randomIndex],
-                array[currentIndex],
-            ];
-        }
-        return array;
-    };
-
-    const updateData = (data) => {
-        setQuizData(
-            data.results.map((qData) => {
-                const incorrect = qData.incorrect_answers.map((answer) => {
-                    return {
-                        value: decodeHTML(answer),
-                        id: nanoid(),
-                        isHeld: false,
-                        isCorrect: false,
-                    };
-                });
-                const correct = {
-                    value: decodeHTML(qData.correct_answer),
-                    id: nanoid(),
-                    isHeld: false,
-                    isCorrect: true,
-                };
-                const answersArray = shuffleArray([correct].concat(incorrect));
-                return {
-                    allAnswers: answersArray,
-                    id: nanoid(),
-                    question: decodeHTML(qData.question),
-                };
-            })
-        );
     };
 
     const heldChange = (qID, aID) => {
@@ -95,18 +33,27 @@ const App = () => {
     };
 
     const handleResetQuiz = () => {
-        setResetQuiz((prevState) => prevState + 1);
+        setSelected(false);
     };
 
     return (
         <main>
             {loading && <Loading />}
             {!loading && !gameOn && <Start onClick={handleClick} />}
-            {!loading && gameOn && (
+            {gameOn && !selected && (
+                <Selection
+                    setQuizData={setQuizData}
+                    setLoading={setLoading}
+                    setSelected={setSelected}
+                    setNoOfQuestions={setNoOfQuestions}
+                />
+            )}
+            {!loading && gameOn && selected && (
                 <Questions
                     heldChange={heldChange}
                     resetQuiz={handleResetQuiz}
                     quizData={quizData}
+                    noOfQuestions={noOfQuestions}
                 />
             )}
         </main>

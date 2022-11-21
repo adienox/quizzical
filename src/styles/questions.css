@@ -52,3 +52,7 @@ hr {
     line-height: 15px;
     color: #293264;
 }
+
+.questionsButton {
+    margin-bottom: 32px;
+}

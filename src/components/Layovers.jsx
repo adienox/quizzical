@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dna } from 'react-loader-spinner';
 import '../styles/start.css';
 

@@ -46,10 +46,10 @@ const Questions = (props) => {
             <div className="buttonContainer">
                 {isShown && (
                     <h4 className="score">
-                        You scored {score}/5 correct answers
+                        You scored {score}/{props.noOfQuestions} correct answers
                     </h4>
                 )}
-                <button className="defaultButton" onClick={handleClick}>
+                <button className="defaultButton questionsButton" onClick={handleClick}>
                     {isShown ? 'Reset' : 'Check Answer'}
                 </button>
             </div>
