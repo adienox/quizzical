@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 import Question from './Question';
-import '../styles/questions.css';
 
 const Questions = (props) => {
     const [isShown, setIsShown] = useState(false);
@@ -41,9 +40,9 @@ const Questions = (props) => {
     };
 
     return (
-        <div className="questionsBlock">
+        <div className="questions">
             {questionElements}
-            <div className="buttonContainer">
+            <div className="questions__buttonContainer">
                 {isShown && (
                     <h4 className="score">
                         You scored {score}/{props.noOfQuestions} correct answers

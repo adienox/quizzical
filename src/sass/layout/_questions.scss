@@ -1,0 +1,69 @@
+@use '../utils/' as u;
+
+.questions {
+    margin: 0 u.rem(18);
+
+    @include u.breakpoint(medium) {
+        margin: 0 u.rem(75);
+    }
+
+    .question {
+        font-weight: 700;
+        font-size: u.rem(18);
+        color: u.$primary;
+        margin: u.rem(15) 0;
+        line-height: normal;
+
+        @include u.breakpoint(medium) {
+            font-size: u.rem(22);
+        }
+    }
+    .answer {
+        display: inline-block;
+        color: u.$primary;
+
+        font-family: u.$secondary-font;
+        font-weight: 500;
+        font-size: u.rem(16);
+        line-height: normal;
+
+        border: 0.8px solid u.$highlight;
+        border-radius: 12px;
+
+        padding: u.rem(8) u.rem(15);
+        margin-right: u.rem(12);
+        margin-bottom: u.rem(15);
+
+        transition: 0.15s background;
+        cursor: pointer;
+
+        &.held {
+            background: u.$highlight;
+        }
+        &.correct {
+            background: u.$correct;
+        }
+        &.incorrect {
+            background: u.$incorrect;
+        }
+    }
+
+    &__buttonContainer {
+        margin-top: u.rem(20);
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin-bottom: u.rem(32);
+    }
+
+    hr {
+        border: 0.8px solid u.$accent;
+    }
+    .score {
+        font-family: u.$secondary-font;
+        font-weight: 700;
+        font-size: u.rem(16);
+        line-height: u.rem(15);
+        color: u.$primary;
+    }
+}

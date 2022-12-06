@@ -1,0 +1,17 @@
+@use 'sass:math';
+
+@function rem($size) {
+    @if math.is-unitless($size) {
+        @return math.div($size, 16) + rem;
+    } @else {
+        @error "Passed value to rem() should only be number.";
+    }
+}
+
+@function em($size) {
+    @if math.is-unitless($size) {
+        @return math.div($size, 16) + em;
+    } @else {
+        @error "Passed value to em() should only be number.";
+    }
+}

@@ -1,0 +1,37 @@
+@use '../utils/' as u;
+
+.grid {
+    display: grid;
+    place-items: center;
+
+    background: u.$text;
+    max-width: u.rem(900);
+    min-height: u.rem(900);
+    height: auto;
+
+    @include u.breakpoint(large) {
+        border-radius: 15px;
+        margin-top: u.rem(32);
+        margin-bottom: u.rem(32);
+    }
+
+    margin-inline: auto;
+
+    &__startContainer {
+        text-align: center;
+
+        .title {
+            font-weight: 700;
+            font-size: u.rem(52);
+            line-height: u.rem(38);
+            color: u.$primary;
+            margin-bottom: u.rem(18);
+        }
+        .description {
+            font-family: u.$secondary-font;
+            font-weight: 400;
+            color: u.$primary;
+            margin-bottom: u.rem(30);
+        }
+    }
+}

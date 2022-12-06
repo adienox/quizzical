@@ -1,9 +1,8 @@
 import { Dna } from 'react-loader-spinner';
-import '../styles/start.css';
 
 const Start = (props) => {
     return (
-        <div className="startContainer">
+        <div className="grid__startContainer">
             <h1 className="title">Quizzical</h1>
             <h4 className="description">Test your trivia knowledge!</h4>
             <button className="defaultButton" onClick={props.onClick}>

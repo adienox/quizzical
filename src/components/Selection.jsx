@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
-import '../styles/selection.css';
 
 const Selection = ({
     setQuizData,
@@ -107,19 +106,19 @@ const Selection = ({
     };
 
     return (
-        <form onSubmit={handleSubmit} className="selectionBox">
+        <form onSubmit={handleSubmit} className="flex">
             <input
                 type="number"
                 name="noOfQuestions"
                 placeholder="Number of questions"
-                className="box"
+                className="flex__box"
                 value={data.noOfQuestions}
                 onChange={handleChange}
             />
             <select
                 name="category"
                 id="category"
-                className="box"
+                className="flex__box"
                 value={data.category}
                 onChange={handleChange}
             >
@@ -154,7 +153,7 @@ const Selection = ({
             <select
                 name="difficulty"
                 id="difficulty"
-                className="box"
+                className="flex__box"
                 value={data.difficulty}
                 onChange={handleChange}
             >
@@ -166,7 +165,7 @@ const Selection = ({
             <select
                 name="type"
                 id="type"
-                className="box"
+                className="flex__box"
                 value={data.type}
                 onChange={handleChange}
             >

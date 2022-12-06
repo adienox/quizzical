@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Start, Loading } from './components/Layovers';
 import Questions from './components/Questions';
 import Selection from './components/Selection';
-import './styles/app.css';
 
 const App = () => {
     const [quizData, setQuizData] = useState([]);
@@ -36,7 +35,7 @@ const App = () => {
     };
 
     return (
-        <main>
+        <main className="grid">
             {loading && <Loading />}
             {!loading && !gameOn && <Start onClick={handleClick} />}
             {gameOn && !selected && (
