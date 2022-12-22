@@ -1,4 +1,5 @@
-# Trivia App
+
+[![quizzical](https://user-images.githubusercontent.com/95954371/209166864-7c95f540-705b-415b-acf8-6b86ad997043.jpg)](https://adiequizzical.netlify.app)
 
 This project is a trivia app that allows users to fetch and view trivia questions from the Open Trivia DB. It is built with React and uses Sass for styling, following the BEM model. The frontend tooling for this project is Vite.
 
